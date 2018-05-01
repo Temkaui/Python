@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	{% load static %}
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'quote/quotes.css' %}"> -->
+</head>
+<body>
+	<div class="header">
+		<h1>Welcome -{{user.name}}!</h1>
+		<a href="/logout">Logout</a>
+	</div>
+	<div class="wrapper">
+		<div class="left">
+			<h3>Your Wishes:</h3>
+			<div class="content">
+				{% for wish in wishes %}
+					<table>
+						<tr>
+							<th>Item Name</th>
+							<th>Posted By</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td><h4><a href="/item/{{wish.id}}">{{wish.item_name}}</a></h4></td>
+							<td>{{wish.poster.name}}</td>
+							<td>
+								<a href="/rem_wish/{{wish.id}}">Remove from wish</a>
+								<a href="/delete">Delete</a>
+							</td>
+						</tr>
+					</table>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="right">
+			<h3>Others Wishes</h3>
+			<div>	
+				{% for item in all_items %}
+					<div class="content">
+						<table>
+						<tr>
+							<th>Item Name</th>
+							<th>Posted By</th>
+							<th>created at</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td><a href="/item/{{item.id}}">{{item.item_name}}</a></td>
+							<td>{{item.poster.name}}</td>
+							<td>{{item.created_at}}</td>
+							<td><a href="/add_wish/{{item.id}}">Add to wish</a></td>
+						</tr>
+						</table>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<a href="/create">Add Item</a>
+	</div>
+</body>
+</html>

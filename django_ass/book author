@@ -1,0 +1,181 @@
+Addin book and Author linking them
+
+from apps.Books_author.models import *
+>>> Book.objects.all()
+<QuerySet []>
+>>> Book.objects.create(name="DarkNight",desc="hliugyh uygvuy")
+<Book: DarkNight hliugyh uygvuy>
+>>> Author.objects.create(first_name="Tim",last_name="Dang",email="dang@dang.com")
+<Author: Tim Dang dang@dang.com>
+>>> author=Author.objects.first()
+>>> book=Book.objects.first()
+>>> author.books.add(book)
+>>> author.books.all()
+<QuerySet [<Book: DarkNight hliugyh uygvuy>]>
+>>> book.authors.all()
+<QuerySet [<Author: Tim Dang dang@dang.com>]>
+
+
+
+Adding books
+Book.objects.create(name="C sharp",desc="hliugyh uygvuy")
+<Book: C sharp hliugyh uygvuy>
+>>> Book.objects.create(name="Java",desc="hliugyh uygvuy")
+<Book: Java hliugyh uygvuy>
+>>> Book.objects.create(name="Python",desc="hliugyh uygvuy")
+<Book: Python hliugyh uygvuy>
+>>> Book.objects.create(name="PHP",desc="hliugyh uygvuy")
+<Book: PHP hliugyh uygvuy>
+>>> Book.objects.create(name="Ruby",desc="hliugyh uygvuy")
+<Book: Ruby hliugyh uygvuy>
+
+
+Adding Authors
+
+ Author.objects.create(first_name="Mike",last_name="Mike",email="Mike@Mike.com")
+<Author: Mike Mike Mike@Mike.com>
+>>> Author.objects.create(first_name="Speros",last_name="Speros",email="Speros@Speros.com")
+<Author: Speros Speros Speros@Speros.com>
+>>> Author.objects.create(first_name="John",last_name="John",email="John@John.com")
+<Author: John John John@John.com>
+>>> Author.objects.create(first_name="Jadee",last_name="Jadee",email="Jadee@Jadee.com")
+<Author: Jadee Jadee Jadee@Jadee.com>
+>>> Author.objects.create(first_name="Jay",last_name="Jay",email="Jay@Jay.com")
+<Author: Jay Jay Jay@Jay.com>
+----------------------------------------------------
+
+
+Change the name of book id=5
+book = Book.objects.get(id=5)
+>>> book.name= "C"
+>>> book.save()
+>>> Book.objects.get(id=5)
+<Book: C hliugyh uygvuy>
+-----------------------------------------------------
+
+Changing name of author 5
+
+author=Author.objects.get(id=5)
+>>> author.first_name="Ketul"
+>>> author.save()
+>>> author=Author.objects.get(id=5)
+>>> Author.objects.get(id=5)
+<Author: Ketul Jadee Jadee@Jadee.com>
+-------------------------------------------------
+Adding author 1 to book 1 & 2
+
+ book=Book.objects.get(id=2)
+>>> author=Author.objects.first()
+>>> author.books.add(book)
+author.books.all()
+<QuerySet [<Book: DarkNight hliugyh uygvuy>, <Book: C sharp hliugyh uygvuy>]>
+
+-----------------------------------------------------
+
+Assign the second author to the first 3 books
+
+author=Author.objects.get(id=2)
+>>> book=Book.objects.first()
+>>> author.books.add(book)
+>>> author=Author.objects.get(id=2)
+>>> book=Book.objects.get(id=2)
+>>> author.books.add(book)
+>>> author=Author.objects.get(id=2)
+>>> book=Book.objects.get(id=3)
+>>> author.books.add(book)
+
+author.books.all()
+<QuerySet [<Book: DarkNight hliugyh uygvuy>, <Book: C sharp hliugyh uygvuy>, <Book: Java hliugyh uygvuy>]>
+
+--------------------------------------------------------
+
+Assign the third author to the first 4 books
+
+author.books.add(book)
+>>> author=Author.objects.get(id=3)
+>>> book=Book.objects.get(id=2)
+>>> author.books.add(book)
+>>> author=Author.objects.get(id=3)
+>>> book=Book.objects.get(id=3)
+>>> author.books.add(book)
+>>> author=Author.objects.get(id=3)
+>>> book=Book.objects.get(id=4)
+>>> author.books.add(book)
+>>> Author.objects.get(id=3)
+<Author: Speros Speros Speros@Speros.com>
+>>> Author.objects.get(id=3).books
+<django.db.models.fields.related_descriptors.ManyRelatedManager object at 0x0000000003FFFD68>
+>>> author.books.all()
+<QuerySet [<Book: DarkNight hliugyh uygvuy>, <Book: C sharp hliugyh uygvuy>, <Book: Java hliugyh uygvuy>, <Book: Python hliugyh uygvuy>]>
+>>>
+
+-------------------------------------------------------------------------------
+
+Assign the fourth author to the first 5 books (or in other words, all the books)
+
+book=Book.objects.get(id=4)
+>>> author=Author.objects.get(id=4)
+>>> author.books.add(book)
+>>> book=Book.objects.get(id=1)
+>>> author=Author.objects.get(id=4)
+>>> author.books.add(book)
+>>> book=Book.objects.get(id=2)
+>>> author=Author.objects.get(id=4)
+>>> author.books.add(book)
+>>> book=Book.objects.get(id=3)
+>>> author=Author.objects.get(id=4)
+>>> author.books.add(book)
+>>> book=Book.objects.get(id=5)
+>>> author=Author.objects.get(id=4)
+>>> author.books.add(book)
+>>> author.books.all()
+<QuerySet [<Book: DarkNight hliugyh uygvuy>, <Book: C sharp hliugyh uygvuy>, <Book: Java hliugyh uygvuy>, <Book: Python hliugyh uygvuy>, <Book: C hliugyh uygvuy>]>
+>>>
+----------------------------------------------------------------------------------
+
+For the 3rd book, retrieve all the authors
+
+ book=Book.objects.get(id=3)
+>>> book.authors.all()
+<QuerySet [<Author: Mike Mike Mike@Mike.com>, <Author: Speros Speros Speros@Speros.com>, <Author: John John John@John.com>]>
+
+------------------------------------------------------------------------------------
+
+For the 3rd book, remove the first author
+
+book=Book.objects.get(id=3)
+>>> book.authors.filter()
+<QuerySet [<Author: Mike Mike Mike@Mike.com>, <Author: Speros Speros Speros@Speros.com>, <Author: John John John@John.com>]>
+>>> book.authors.first()
+<Author: Mike Mike Mike@Mike.com>
+>>> book.authors.first().delete()
+(3, {u'Books_author.Author_books': 2, u'Books_author.Author': 1})
+>>> book.authors.filter()
+<QuerySet [<Author: Speros Speros Speros@Speros.com>, <Author: John John John@John.com>]>
+
+--------------------------------------------------------------------------
+
+For the 2nd book, add the 5th author as one of the authors
+
+book=Book.objects.get(id=2)
+>>> author=Author.objects.get(id=5)
+>>> author.books.add(book)
+>>> book.authors.all()
+<QuerySet [<Author: Tim Dang dang@dang.com>, <Author: Speros Speros Speros@Speros.com>, <Author: John John John@John.com>, <Author: Ketul Jadee Jadee@Jadee.com>]>
+>>>
+
+
+------------------------------------------------------------------------------
+
+Find all the books that the 3rd author is part of
+
+author=Author.objects.get(id=3)
+>>> author.books.all()
+<QuerySet [<Book: 2 C sharp hliugyh uygvuy>, <Book: 3 Java hliugyh uygvuy>, <Book: 4 Python hliugyh uygvuy>]>
+
+-----------------------------------------------------------------------------
+
+Find all the books that the 2nd author is part of
+
+author=Author.objects.get(id=2)
+>>> author.books.all()

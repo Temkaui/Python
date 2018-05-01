@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Survey Result</title>
+</head>
+<body>
+	<h1>Submitted Info</h1>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td>{{ request.session.name }}</td>
+		</tr>
+		<tr>
+			<td>Dojo Location:</td>
+			<td>{{ request.session.location }}</td>
+		</tr>
+		<tr>
+			<td>Favorite Language:</td>
+			<td>{{ request.session.language }}</td>
+		</tr>
+		<tr>
+			<td>comment:</td>
+			<td>{{ request.session.comment }}</td>
+		</tr>
+	</table>
+	<button onclick="location.href='/'" type="submit">Go Back</button>
+</body>
+</html>

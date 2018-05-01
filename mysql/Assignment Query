@@ -1,0 +1,56 @@
+# Q1
+select name, language, percentage from countries
+left join languages
+on countries.id = languages.country_id
+where languages.language = "slovene"
+order by percentage desc
+
+# Q2
+select countries.name, count(*) as cities 
+from countries
+join cities
+on countries.id = country_id
+group by countries.id
+order by cities desc
+
+# Q3
+select countries.name, cities.name as city_name, cities.population from countries 
+join cities
+on countries.id = country_id
+where countries.name = "Mexico" and cities.population >500000
+order by cities.population desc
+
+# Q4
+select countries.name, language, percentage
+from countries
+join languages
+on countries.id = country_id and percentage > 89.0
+order by percentage desc
+
+#Q5
+select countries.name, cities.name as city_name, cities.population
+from countries
+join cities
+on countries.id = country_id
+where surface_area < 501 and cities.population > 100000
+
+#Q6
+select name, government_form, capital, life_expectancy 
+from countries
+where countries.government_form = "constitutional monarchy" 
+and capital > 200 and life_expectancy > 75
+order by name
+
+#Q7
+select countries.name, cities.name as city_name, cities.district, cities.population 
+from countries
+join cities
+on countries.id = cities.country_id
+where countries.name = "Argentina" and cities.district = "Buenos Aires" and cities.population > 500000
+order by city_name
+
+#Q8
+select region, count(*) as country_count
+from countries
+group by region
+order by country_count desc

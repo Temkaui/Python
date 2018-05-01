@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <!-- <link rel="stylesheet" href="{% static 'main/dashboard.css' %}" media="screen" title="no title" charset="UTF-8" > -->
+    <title>Dashboard</title>
+</head>
+<body>
+    <p><a href="/logout">Logout</a></p>
+    <h1>Hello {{user.name}}!</h1>
+    <h2>Your wishlist</h2>
+
+    {% for wish in wishes %}
+
+        {{wish.wish.title}}</a>
+
+         By: {{wish.wish.user.name}} added on {{wish.created_at}} 
+         {% if request.session.user_id == wish.wish.user.id %}
+         <a href=""> Delete </a>
+         {% else %}
+         <a href=""> Remove </a>
+         {% endif %}
+         
+    {% endfor %}
+    </h3>
+    <hr><hr>
+    <h2>Others Wish list</h2>
+
+    {% for item in items %}
+    <h3><a href="">{{item.title}}</a> wish by: {{item.user.name}} {{item.created_at}} <a href="">add to wishlist</a></h3>
+    {% endfor %}
+    <hr><hr>
+    <a href="/create">Add an item</a>
+</body>
+</html>

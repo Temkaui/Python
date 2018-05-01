@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Favorites</title>
+<!-- 	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'quote/profile.css' %}"> -->
+</head>
+<body>
+	<div>
+		<a href="/dashboard">Dashboard</a>
+		<a href="/logout">Logout</a>
+	</div>
+	<div>	
+		<h1>Item Detail</h1>
+			<div class="content">
+				<h2>{{item.item_name}}</h2>
+				{%for user in users%}
+				<p>{{user.name}}</p>
+				{% endfor%}
+			</div>
+	</div>
+</body>
+</html>

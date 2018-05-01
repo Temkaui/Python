@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Success</title>
+<!--   <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style> -->
+</head>
+<body>
+  <fieldset>
+    <legend>Emails</legend>
+    <table>
+      <tr>
+        <td>Email</td>
+        <td>Created at</td>
+        <td>Updated at</td>
+      </tr>
+      {% for user in data %}
+        <tr>
+          <td>{{user.email}}</td>
+          <td>{{user.created_at}}</td>
+          <td>{{user.updated_at}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <a href="/">Back</a>
+  </fieldset>
+</body>
+</html>

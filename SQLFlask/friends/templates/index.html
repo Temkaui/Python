@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Friends</title>
+  <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style>
+</head>
+<body>
+
+<fieldset>
+  <legend>Friends</legend>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Last Name</th>
+      <th>Occupation</th>
+    </tr>
+    {% for friend in friends %}
+      <tr>
+        <td>{{friend.first_name}}</td>
+        <td>{{friend.last_name}}</td>
+        <td>{{friend.occupation}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend>Add a new Touhou</legend>
+  <form action="/" method="post">
+    First Name: <input type="text" name="first_name"><br>
+    Last Name: <input type="text" name="last_name"><br>
+    Occupation: <input type="text" name="occupation"><br>
+    <input type="submit" value="Add a Friend">
+  </form>
+</fieldset>
+
+</body>
+</html>

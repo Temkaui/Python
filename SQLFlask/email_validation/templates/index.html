@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Email Validate</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<fieldset>
+		<legend>Add a new Email</legend>
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<h3>Alert</h3>
+				<p>{{ messages[0] }}</p>
+			{% endif %}
+		{% endwith %}
+		<form action="/success/add" method="post">
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email" >
+    		<input type="submit" name="Add">
+  </form>
+</fieldset>
+
+</body>
+</html>

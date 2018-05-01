@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quotes</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'quote/quotes.css' %}">
+</head>
+<body>
+	<div class="header">
+		<h1>Welcome -{{user.name}}!</h1>
+		<a href="/user">My Favourites</a>
+		<a href="/logout">Logout</a>
+	</div>
+	<div class="wrapper">
+		<div class="left">
+			<h3>Quotable Quotes:</h3>
+			<div>	
+				{% for quote in quotable_quotes %}
+					<div class="content">
+						<h4>{{quote.author}}</h4>
+						<p>{{quote.content}}</p>
+						<p>posted by:<a href="/users/{{quote.poster.id}}">{{quote.poster.name}}</a></p>
+						<a href="/add_to_list/{{quote.id}}">Add to My List</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="right">
+			<h3>Favourites:</h3>
+			<div class="content">
+				{% for favorite in favorites %}
+					<div>
+						<h4>{{favorite.author}}</h4>
+						<p>{{favorite.content}}</p>
+						<p>posted by:<a href="/users/{{favorite.poster.id}}">{{favorite.poster.name}}</a></p>
+						<a href="/rem_from_list/{{favorite.id}}">Remove from My List</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="post">
+		<form action="/process" method="post">
+			{% csrf_token %}
+			<label>Author:</label>
+			<input type="text" name="author">
+			<label>Message:</label>
+			<textarea name="content"></textarea>
+			<button type="submit" value="Post">Post</button>	
+		</form>
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+</body>
+</html>

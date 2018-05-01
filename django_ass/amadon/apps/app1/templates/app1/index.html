@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Amadon</title>
+	{%load static%}
+	<link rel="stylesheet" type="text/css" href="{% static 'store_front/styles.css' %}">
+</head>
+<body>
+	<h1>Amadon Store!</h1>
+	<table>
+		<tr>
+			<th>Item</th>
+			<th>Price</th>
+			<th>Actions</th>
+		</tr>
+		<tr>
+			<td>Dojo T-shirt</td>
+			<td>$19.99</td>
+			<td>
+				<form action="process" method="POST">
+					{%csrf_token%}
+					<select name="quantity" id="quantitiy">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+					<input type="hidden" name="item" value="shirt">
+					<button type="submit">Buy!</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>Dojo Sweater</td>
+			<td>$29.99</td>
+			<td>
+				<form action="process" method="POST">
+					{%csrf_token%}
+					<select name="quantity" id="quantitiy">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+					<input type="hidden" name="item" value="sweater">
+					<button type="submit">Buy!</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>Dojo Duck</td>
+			<td>$4.99</td>
+			<td>
+				<form action="process" method="POST">
+					{%csrf_token%}
+					<select name="quantity" id="quantitiy">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+					<input type="hidden" name="item" value="cup">
+					<button type="submit">Buy!</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>Algorith Book</td>
+			<td>$49.99</td>
+			<td>
+				<form action="process" method="POST">
+					{%csrf_token%}
+					<select name="quantity" id="quantitiy">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+					<input type="hidden" name="item" value="book">
+					<button type="submit">Buy!</button>
+				</form>
+			</td>
+		</tr>		
+	</table>
+</body>
+</html>

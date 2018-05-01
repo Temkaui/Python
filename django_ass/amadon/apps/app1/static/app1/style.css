@@ -1,0 +1,52 @@
+*{
+	font-family: sans-serif;
+}
+#left{
+	vertical-align: top;
+	border-right: 5px solid black;
+	display: inline-block;
+	width: 45%;
+}
+	#left div{
+		margin-left: 20px;
+	}
+	#left button{
+		background: lightblue;
+		display: block;
+		margin-top: 20px;
+	} 
+#right{
+	vertical-align: top;
+	display: inline-block;
+	width: 50%;
+	margin-left:-5px;
+}
+	#right button{
+		background: pink;
+		float: right;
+	}
+	#right paragraph{
+		width: 100%
+	}
+#words{
+	padding-top: 50px;
+	padding-left: 20px;
+}
+.red{
+	color: red;
+}
+.green{
+	color: green;
+}
+.blue{
+	color: blue;
+}
+.big{
+	font-size: 20px;
+	font-weight: bold;
+}
+.time{
+	display: inline-block;
+	text-align: right;
+	float: right;
+}

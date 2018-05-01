@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Favorites</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'quote/profile.css' %}">
+</head>
+<body>
+	<div>
+		<a href="/quotes">Quotable Quotes</a>
+		<a href="/logout">Logout</a>
+	</div>
+	<div>	
+		<h1>{{user.name}}'s favorites </h1>
+		<p>Count: {{user.favorites.all | length}}</p>
+		{% for favorite in favorites %}
+			<div class="content">
+				<h3>Author: {{favorite.author}}</h3> 
+				<p>Content: {{favorite.content}}</p>
+				<p></p>
+			</div>
+		{% endfor %}
+	</div>
+</body>
+</html>
